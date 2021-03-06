@@ -12,7 +12,53 @@ class CartItem extends React.Component{
         }
         // this.increaseQuantity=this.increaseQuantity.bind(this);
     }
+// =============================================================================
     increaseQuantity=()=>{
+        // this.state.qty+=1;
+        console.log('this',this.state.qty);
+
+        // set state form 1,use when u dont require prev state
+        // this.setState({
+        //     qty:this.state.qty+1
+        // });
+        // this.setState({
+        //     qty:this.state.qty+10
+        // });
+        // this.setState({
+        //     qty:this.state.qty+20
+        // });//batching process-->in an event handle no matter how many times we call setState 
+        //rendering will take place only once,react will take only the last setState
+// -----------------------------------------------------------------------------
+        // set state form 2,if we require prev state,here in batching all the setState 
+        //methods will execute,react stores the setstate method in the queue
+
+        // ****setState call is asynchronous,updation of qty took place,still on printing the state
+        //it may show the previous state only
+        this.setState((prevState)=>{
+            return{
+                qty:prevState.qty+1
+            }
+        },()=>{
+            console.log("this.state",this.state)
+        });
+        // this.setState((prevState)=>{
+        //     return{
+        //         qty:prevState.qty+1
+        //     }
+        // });
+        // this.setState((prevState)=>{
+        //     return{
+        //         qty:prevState.qty+1
+        //     }
+        // });
+    }
+
+// ===============================================================================
+    decreaseQuantity=()=>{
+        const {qty}=this.state;
+        if (qty==0){
+            return;
+        }
         // this.state.qty+=1;
         console.log('this',this.state.qty);
         // set state form 1,use when u dont require prev state
@@ -22,11 +68,15 @@ class CartItem extends React.Component{
         // set state form 2,if we require prev state
         this.setState((prevState)=>{
             return{
-                qty:prevState.qty+1
+                qty:prevState.qty-1
             }
         });
+            
+            
+// ============================================================================
     }
     render() {
+        // console.log("render");
         const {price,title,qty,img} = this.state;
         return(
             <div className="cart-item"> 
@@ -47,6 +97,7 @@ class CartItem extends React.Component{
                         <img alt="decrease" 
                             className="action-icons" 
                             src="https://www.flaticon.com/svg/vstatic/svg/992/992683.svg?token=exp=1614972486~hmac=c74f53a975e3ab6cb866c36e02722171"
+                            onClick={this.decreaseQuantity}
                         />
                         <img alt="delete"
                             className="action-icons"
@@ -63,10 +114,11 @@ class CartItem extends React.Component{
 }
 const styles={
     image:{
-        height: 110,
+        height: 120,
         width:110,
         borderRadius:4,
-        background:'#ccc'
+        background:'#ccc',
+        marginRight:20
     }
 }
 export default CartItem;
