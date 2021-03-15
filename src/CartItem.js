@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-class CartItem extends React.Component{
+const CartItem=(props)=>{
     
 // =============================================================================
     // increaseQuantity=()=>{
@@ -66,11 +66,11 @@ class CartItem extends React.Component{
             
 // ============================================================================
     
-    render() {
+    // render() {
         // console.log("render");
-        const {price,title,qty,img} = this.props.product;
+        const {price,title,qty,img} = props.product;
         // console.log("this.props",this.props);
-        const {product,onIncreaseQuantity,onDecreaseQuantity,onDeleteProduct}=this.props;
+        const {product,onIncreaseQuantity,onDecreaseQuantity,onDeleteProduct}=props;
         return(
             <div className="cart-item"> 
                 <div className="left-block">
@@ -84,17 +84,17 @@ class CartItem extends React.Component{
                         {/* Buttons */}
                         <img alt="increase" 
                             className="action-icons"
-                            src="https://www.flaticon.com/svg/vstatic/svg/1828/1828926.svg?token=exp=1614972622~hmac=a27a182fc330c0673a746a57213f37f6"
+                            src="https://www.flaticon.com/svg/vstatic/svg/992/992651.svg?token=exp=1615788855~hmac=6bb1ab47a41433bef399e3720fae6bb2"
                             onClick={()=>onIncreaseQuantity(product)}
                         />
                         <img alt="decrease" 
                             className="action-icons" 
-                            src="https://www.flaticon.com/svg/vstatic/svg/992/992683.svg?token=exp=1614972486~hmac=c74f53a975e3ab6cb866c36e02722171"
+                            src="https://www.flaticon.com/premium-icon/icons/svg/2985/2985073.svg"
                             onClick={()=>onDecreaseQuantity(product)}
                         />
                         <img alt="delete"
                             className="action-icons"
-                            src="https://www.flaticon.com/svg/vstatic/svg/1214/1214428.svg?token=exp=1614972879~hmac=e18e436b22e235a879e114136710ee6c"
+                            src="https://www.flaticon.com/svg/vstatic/svg/1214/1214428.svg?token=exp=1615788970~hmac=a54892555fef3cfeb4b6dcce4ebaa574"
                             onClick={()=>onDeleteProduct(product.id)}
                         />
 
@@ -104,7 +104,7 @@ class CartItem extends React.Component{
             
             </div>     
     );
-    }
+    // }
 }
 const styles={
     image:{
